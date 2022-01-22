@@ -1,0 +1,26 @@
+{% extends 'base/base.html' %}
+
+{% block title %}home {% endblock title %}
+
+{% block content %}
+
+    <h1>This is home page</h1>
+
+    {% for item in news %}
+        <h3>{{item.id}}. {{item.title}}</h3>
+        <p>{{item.content}}</p>
+        <small>{{item.date}}-{{item.user.username}}</small>
+        {% if user.is_superuser or user.id == item.user.id %}
+            <a href="{% url 'edit_news' id=item.id %}" class="btn btn-info" role="button">Edit</a>
+            <a href="{% url 'delete_news' id=item.id %} " class="btn btn-danger" role="button">Delete</a>
+        {% endif %}
+    {% endfor %}
+
+    <div class="container">
+        <a class = "btn btn-primary" href="{% url 'add-news' %}">Add news</a>
+    </div>
+
+
+
+
+{% endblock content %}

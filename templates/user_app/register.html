@@ -1,0 +1,54 @@
+{% extends 'base/base.html' %}
+{% block title %}Register User {% endblock title %}
+
+{% block content %}
+<form method="POST">
+    {% csrf_token %}
+    <section class="vh-100">
+        <div class="container-fluid h-custom">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col-md-9 col-lg-6 col-xl-5">
+                    <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp"
+                        class="img-fluid" alt="Sample image">
+                </div>
+                <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
+
+                    <div class="form-outline mb-4">
+                        <label class="form-label" for="first_name">First Name:</label>
+                        <input type="text" id="first_name" class="form-control form-control-lg" name="first_name"
+                            placeholder="Enter first name" required>
+                    </div>
+
+                    <div class="form-outline mb-4">
+                        <label class="form-label" for="last_name">Last Name:</label>
+                        <input type="text" id="last_name" class="form-control form-control-lg" name="last_name"
+                            placeholder="Enter a Last name" required>
+                    </div>
+                    <!-- Email input -->
+                    <div class="form-outline mb-4">
+                        <label class="form-label" for="email">Email address:</label>
+                        <input type="email" id="email" class="form-control form-control-lg" name="email"
+                            placeholder="Enter a valid email address" required>
+                    </div>
+
+                    <div class="form-outline mb-4">
+                        <label class="form-label" for="username">Username:</label>
+                        <input type="text" id="username" class="form-control form-control-lg" name="username"
+                            placeholder="Enter a Username" required>
+                    </div>
+
+                    <!-- Password input -->
+                    <div class="form-outline mb-3">
+                        <label class="form-label" for="password">Password:</label>
+                        <input type="password" id="password" class="form-control form-control-lg" name="password"
+                            placeholder="Enter password" required>
+                    </div>
+
+                        <div class="form-outline mb-3">
+                            <button type="submit" class="btn btn-primary btn-lg"
+                                style="padding-left: 2.5rem; padding-right: 2.5rem;">Register</button>
+    </section>
+</form>
+
+
+{% endblock content %}
