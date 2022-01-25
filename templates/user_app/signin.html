@@ -26,17 +26,21 @@
                             placeholder="Enter password" required>
                     </div>
 
-                    
+                    <div>
+                        <a href="{% url 'password_reset' %}">Reset password</a>
+                    </div>
 
                     <div class="text-center text-lg-start mt-4 pt-2">
                         <button type="submit" class="btn btn-primary btn-lg"
                             style="padding-left: 2.5rem; padding-right: 2.5rem;">Login</button>
 
 
-                    {% if message %}        
-                        <div class="alert alert-warning alert-dismissible fade show">
-                            <strong>{{ message }}</strong> 
-                            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                    {% if messages %}        
+                        <div class="alert alert-warning alert-dismissible fade show mt-4">
+                            {% for message in messages %}
+                                <strong>{{ message }}</strong> 
+                                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                            {% endfor %}
                         </div>
                     {% endif %}
                     </div>

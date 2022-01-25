@@ -11,5 +11,7 @@ urlpatterns = [
     path('delete_news/<int:id>', views.delete_news, name='delete_news'),
     path('signin/',views.signin, name='signin'),
     path('register/', views.register, name='register'),
-    path('signout/',views.signout,name='signout')
+    path('signout/',views.signout,name='signout'),
+    path('profile/',views.profile,name='profile'),
+    path('password_reset/',views.password_reset,name='password_reset')
 ]

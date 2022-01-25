@@ -4,7 +4,14 @@
 
 {% block content %}
 
-    <h1>This is home page</h1>
+    {% if messages %}        
+    <div class="alert alert-success alert-dismissible fade show">
+        {% for message in messages %}
+            <strong>{{ message }}</strong> 
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        {% endfor %}
+    </div>
+    {% endif %}
 
     {% for item in news %}
         <h3>{{item.id}}. {{item.title}}</h3>
@@ -16,9 +23,9 @@
         {% endif %}
     {% endfor %}
 
-    <div class="container">
-        <a class = "btn btn-primary" href="{% url 'add-news' %}">Add news</a>
-    </div>
+        <div class="container">
+            <a class = "btn btn-primary" href="{% url 'add-news' %}">Add news</a>
+        </div>
 
 
 

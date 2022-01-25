@@ -9,19 +9,18 @@ from django.contrib import messages
 
 
 # Create your views here.
-# @login_required
+@login_required
 def home(request):
     news = News.objects.all()
     return render(request,'blog_app/home.html', context={'news':news})
 
-# @login_required
+@login_required
 def add_news(request):
     if request.method == 'GET':
         return render(request, 'blog_app/add-news.html')
     else:
         title = request.POST['title']
         content = request.POST['content']
-        image = request.POST['image']
         News.objects.create(title=title, content=content, user_id = request.user.id)
 
         return redirect('home')
@@ -51,7 +50,12 @@ def signin(request):
         user = authenticate(username=username, password=password)
         if user is not None:
             login(request, user)
-            return redirect('home')
+            next_url = request.GET.get('next')
+            if next_url is None:
+                messages.success(request, 'successfully logged in')
+                return redirect('home')
+            else:
+                return redirect(next_url)
         else:
             messages.warning(request, 'Invalid username or password')
             return redirect('signin')
@@ -77,3 +81,20 @@ def signout(request):
     logout(request)
 
     return redirect('signin')
+
+@login_required
+def profile(request):
+    user = User.objects.get(id=request.user.id)
+    return render(request, 'user_app/profile.html',{'user':user})
+
+@login_required
+def password_reset(request):
+    if request.method == 'GET':
+        return render(request,'user_app/password_reset.html')
+    else:
+        new_password = request.POST['new_password']
+        user = User.objects.get(id=request.user.id)
+        user.set_password(new_password)
+        user.save()
+        return redirect('signin')
+    
